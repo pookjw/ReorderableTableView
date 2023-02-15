@@ -22,17 +22,4 @@ actor ViewModel {
 
     await dataSource.apply(snapshot, animatingDifferences: true)
   }
-
-  func move(indexPath: IndexPath, to destinationIndexPath: IndexPath) async {
-    guard
-      let itemModel = await dataSource.itemIdentifier(for: indexPath),
-      let destinationItemModel = await dataSource.itemIdentifier(for: destinationIndexPath)
-    else {
-      return
-    }
-
-    var snapshot = dataSource.snapshot()
-    snapshot.moveItem(itemModel, beforeItem: destinationItemModel)
-    await dataSource.apply(snapshot, animatingDifferences: true)
-  }
 }
